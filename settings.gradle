@@ -1,0 +1,3 @@
+include ':BaseKit'
+include ':app'
+rootProject.name = "BasicKit"
