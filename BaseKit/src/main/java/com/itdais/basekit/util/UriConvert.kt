@@ -1,6 +1,5 @@
 package com.itdais.basekit.util
 
-import android.content.Context
 import android.net.Uri
 import android.provider.ContactsContract
 
