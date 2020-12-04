@@ -5,7 +5,6 @@ import android.app.Application.ActivityLifecycleCallbacks
 import android.content.Context
 import android.os.Bundle
 import android.os.Process
-import com.itdais.basekit.util.Utils.Companion.context
 import java.util.*
 
 /**
@@ -33,9 +32,9 @@ object ActivityManager {
     fun appExit() {
         try {
             clearActivity()
-            val activityMgr =
-                context!!.getSystemService(Context.ACTIVITY_SERVICE) as android.app.ActivityManager
-            activityMgr?.killBackgroundProcesses(context!!.packageName)
+            val activityMgr = Utils.getContext()
+                .getSystemService(Context.ACTIVITY_SERVICE) as android.app.ActivityManager
+            activityMgr.killBackgroundProcesses(Utils.getContext().packageName)
             Process.killProcess(Process.myPid())
             System.exit(0)
         } catch (e: Exception) {
