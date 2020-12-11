@@ -1,7 +1,6 @@
 package com.itdais.basekit.base
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import java.lang.reflect.ParameterizedType
@@ -9,6 +8,7 @@ import java.lang.reflect.ParameterizedType
 /**
  * @author ding.jw
  * @description
+ * mvvm基础activity，可以使用携程
  */
 abstract class BaseMvvmFragment<VM : BaseViewModel>(contentLayoutId: Int) :
     BaseFragment(contentLayoutId) {

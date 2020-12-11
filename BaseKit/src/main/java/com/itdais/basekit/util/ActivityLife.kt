@@ -10,10 +10,15 @@ import java.util.*
 /**
  * @author ding.jw
  * @description
+ * 页面生命周期
  */
-object ActivityManager {
+object ActivityLife {
     //页面监听器
     val activityLifecycle: AppActivityLifecycleImpl
+
+    //展示统计
+    private var mActivityCount = 0
+    private val mActivityList = LinkedList<Activity>()
 
     init {
         activityLifecycle = AppActivityLifecycleImpl()
@@ -23,7 +28,33 @@ object ActivityManager {
      * 清空页面
      */
     fun clearActivity() {
-        activityLifecycle.clearActivity()
+        for (activity in mActivityList) {
+            activity?.finish()
+        }
+        mActivityList.clear()
+    }
+
+    /**
+     * 把activity放置等到最上层
+     */
+    fun setTopActivity(activity: Activity) {
+        if (mActivityList.contains(activity)) {
+            if (mActivityList.last != activity) {
+                mActivityList.remove(activity)
+                mActivityList.addLast(activity)
+            }
+        } else {
+            mActivityList.addLast(activity)
+        }
+    }
+
+    /**
+     * 应用是否在前台
+     *
+     * @return
+     */
+    fun isForeground(): Boolean {
+        return mActivityCount > 0
     }
 
     /**
@@ -42,15 +73,24 @@ object ActivityManager {
     }
 
     class AppActivityLifecycleImpl : ActivityLifecycleCallbacks {
-        private val mActivityList = Stack<Activity>()
+
         override fun onActivityCreated(activity: Activity, bundle: Bundle?) {
             mActivityList.add(activity)
         }
 
-        override fun onActivityStarted(activity: Activity) {}
+        override fun onActivityStarted(activity: Activity) {
+            mActivityCount++
+        }
+
         override fun onActivityResumed(activity: Activity) {}
         override fun onActivityPaused(activity: Activity) {}
-        override fun onActivityStopped(activity: Activity) {}
+        override fun onActivityStopped(activity: Activity) {
+            mActivityCount--
+            if (mActivityCount == 0) {
+                //此时切后台
+            }
+        }
+
         override fun onActivitySaveInstanceState(
             activity: Activity,
             bundle: Bundle
@@ -60,16 +100,5 @@ object ActivityManager {
         override fun onActivityDestroyed(activity: Activity) {
             mActivityList.remove(activity)
         }
-
-        /**
-         * 清空页面
-         */
-        fun clearActivity() {
-            for (activity in mActivityList) {
-                activity?.finish()
-            }
-            mActivityList.clear()
-        }
     }
-
 }
