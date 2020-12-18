@@ -33,6 +33,8 @@ dependencies {
      //协程
      api 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'
      api "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9"
+     // gson
+     api 'com.google.code.gson:gson:2.8.5'
 
 项目使用到的权限
 ``` xml
