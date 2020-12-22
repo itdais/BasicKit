@@ -18,6 +18,11 @@ dependencies {
 
 ## 项目简介
 
+   项目集成了：1)、android基础的recyclerview，以及jitpack组件
+              2)、kotlin和协程
+              3)、rxhttp网络加载框架
+              4)、glide图片加载引擎
+
 项目依赖了：
 >    //jetpack
      api 'androidx.appcompat:appcompat:1.2.0'
