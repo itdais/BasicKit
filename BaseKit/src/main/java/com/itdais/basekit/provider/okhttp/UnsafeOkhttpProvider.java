@@ -9,8 +9,9 @@ import rxhttp.wrapper.ssl.HttpsUtils;
 /**
  * Author:  ding.jw
  * Description:
+ * 忽略https的okhttp client
  */
-public final class OkhttpsProvider {
+public final class UnsafeOkhttpProvider {
     /**
      * 获取不需要认证的okhttpclient
      */

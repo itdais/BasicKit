@@ -5,8 +5,9 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
 /**
- * @description viewpager2的adapter，当frangment可见的时候在去调用onResume
- * @author ding.jw
+ * Author:  ding.jw
+ * Description:
+ * viewpager2的adapter，当frangment可见的时候在去调用onResume
  */
 class FragmentLazyStateAdapter(
     fragmentActivity: FragmentActivity,
